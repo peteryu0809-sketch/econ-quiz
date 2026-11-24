@@ -134,7 +134,7 @@ document.getElementById('go').onclick=()=>{
   key.forEach((k,idx)=>{const i=idx+1,sec=document.getElementById('q'+i),mine=ans[idx];
     sec.querySelectorAll('input').forEach(x=>x.disabled=true);
     const e=sec.querySelector('.exp');e.hidden=false;
-    if(k.t==='open'){e.innerHTML='<div class="lab">參考解答</div><div class="ref">'+esc(k.r)+'</div>';return;}
+    if(k.t==='open'){e.innerHTML='<div class="lab">參考解答</div><div class="ref">'+esc(k.r).replace(/\n?(\\\[[\s\S]*?\\\])\n?/g,'$1')+'</div>';return;}
     const ok=mine===k.a;if(ok)right++;else wrongs.push(i);
     sec.querySelectorAll('.opt').forEach(o=>{const L=o.dataset.l;if(L===k.a)o.classList.add('right');else if(L===mine)o.classList.add('wrong');});
     let h='<div class="verdict">'+(ok?'<span class="ok">✓ 答對</span>':'<span class="bad">✗ 答錯</span>（你選 '+mine+'）')+'　正解：'+k.a+'</div>';
